@@ -26,7 +26,7 @@ class BinarySearchTree {
       // create new node
       let newNode = new BSTNode(data);
       // if root is null tree is empty so make new node the root
-      if (this.root === null) {
+      if (!this.root) {
         this.root = newNode;
         // and increase the size
         this._size += 1;
@@ -72,7 +72,16 @@ class BinarySearchTree {
   }
 
   // returns the data of the node if the node by that key is in the tree
-  find(key) {}
+  find(key) {
+    let current = this.root;
+    while (current) {
+      if (current.data.key == key) {
+       return current.data;
+      } else {
+        current = current.left;
+      }
+    }
+  }
 
   // don't have to implement this one
   remove(key) {}
@@ -82,7 +91,24 @@ class BinarySearchTree {
   }
 
   // returns an array with the elements sorted
-  toArray() {}
+  toArray() {
+    if(this.root) {
+
+    }
+    let current = this.root;
+    this.addToArray(this.root, array);
+    return array;
+  }
+  addToArray(node, array) {
+    if(node.left) {
+      this.addToArray(node.left);
+    } 
+      array.push(node.data);
+    
+      if(node.right) {
+        this.addToArray(node.right);
+      }
+  }
 }
 
 let bst = new BinarySearchTree();
